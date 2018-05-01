@@ -1,9 +1,9 @@
 {
     "name": "nest-template",
     "version": "0.1.0",
-    "description": "NestJS API template crafted for Docker environments",
+    "description": "NestJS API project template crafted for Docker environments",
     "author": "Saluki",
-    "license": "UNLICENSED",
+    "license": "MIT",
     "private": true,
     "scripts": {
         "start": "node dist/server.js",
