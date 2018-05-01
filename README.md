@@ -1,5 +1,5 @@
 
-NestJS API project template :rocket:
+NestJS API project template
 ===
 
 Scaffold quickly your **next NestJS API project** using this template
