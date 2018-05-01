@@ -5,9 +5,9 @@ NestJS API template
 Scaffold quickly your **next NestJS API project** using this template
 
 - crafted for Docker environments :whale:
-- REST API with TypeORM support
-- Swagger documentation, Joi validation, logger, ...
-- Folder structure, code samples and best practices
+- REST API with TypeORM support :rocket:
+- Swagger documentation, Joi validation, logger, ... :tada:
+- Folder structure, code samples and best practices :white_check_mark:
 
 Getting started
 ---
