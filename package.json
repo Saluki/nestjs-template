@@ -29,7 +29,8 @@
         "rxjs": "^5.4.3",
         "typeorm": "^0.2.3",
         "winston": "^2.4.2",
-        "express": "^4.16.3"
+        "express": "^4.16.3",
+        "helmet": "^3.12.0"
     },
     "devDependencies": {
         "@types/body-parser": "^1.17.0",
@@ -42,6 +43,7 @@
         "@types/node": "^8.0.0",
         "@types/supertest": "^2.0.4",
         "@types/winston": "^2.3.9",
+        "@types/helmet": "^0.0.37",
         "env-cmd": "^8.0.1",
         "jest": "^22.4.3",
         "nodemon": "^1.17.3",

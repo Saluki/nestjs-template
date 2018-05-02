@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
+import * as helmet from 'helmet';
 
 import { INestApplication } from '@nestjs/common';
 import { ApplicationModule } from './modules/app.module';
@@ -25,10 +26,10 @@ async function bootstrap(): Promise<any> {
     }
 
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({
-        extended: false
+    app.use(helmet());
+    app.use(cors({
+        origin: process.env.API_CORS || '*'
     }));
-    app.use(cors());
 
     app.setGlobalPrefix(process.env.API_PREFIX || API_DEFAULT_PREFIX);
 
