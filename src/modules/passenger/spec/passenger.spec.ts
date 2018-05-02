@@ -10,10 +10,6 @@ describe('Passenger API', () => {
 
     const server = express();
 
-    const data = {
-        token: null
-    };
-
     beforeAll(async () => {
 
         const module = await Test.createTestingModule({
@@ -24,20 +20,20 @@ describe('Passenger API', () => {
         await app.init();
     });
 
-    it('Should return empty passenger list', () => {
+    it('Should return empty passenger list', () =>
 
-        return request(server)
+        request(server)
             .get('/passengers')
             .expect(HttpStatus.OK)
             .then(response => {
                 expect(response.body).toBeInstanceOf(Array);
                 expect(response.body.length).toEqual(0);
-            });
-    });
+            })
+    );
 
-    it('Should insert new passenger in the API', () => {
+    it('Should insert new passenger in the API', () =>
 
-        return request(server)
+        request(server)
             .post('/passengers')
             .send({
                 firstName: 'John',
@@ -47,7 +43,7 @@ describe('Passenger API', () => {
             .then(response => {
                 expect(response.body.firstName).toEqual('John');
                 expect(response.body.lastName).toEqual('Doe');
-            });
-    });
+            })
+    );
 
 });
