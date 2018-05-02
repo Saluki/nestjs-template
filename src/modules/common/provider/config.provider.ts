@@ -2,7 +2,7 @@
 import * as _ from 'lodash';
 
 import { Service } from '../../tokens';
-import { Config } from '../config';
+import { Config } from '../model';
 
 export const configProvider = {
 

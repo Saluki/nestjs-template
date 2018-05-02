@@ -6,8 +6,7 @@ import * as cors from 'cors';
 
 import { INestApplication } from '@nestjs/common';
 import { ApplicationModule } from './modules/app.module';
-import { CommonModule } from './modules/common/common.module';
-import { LogInterceptor } from './modules/common/flow/log.interceptor';
+import { CommonModule, LogInterceptor } from './modules/common';
 
 const API_DEFAULT_PORT = 3000;
 const API_DEFAULT_PREFIX = '/api/v1/';
@@ -21,7 +20,9 @@ async function bootstrap(): Promise<any> {
 
     const app = await NestFactory.create(ApplicationModule);
 
-    createSwagger(app);
+    if (!process.env.SWAGGER_ENABLE || process.env.SWAGGER_ENABLE === '1') {
+        createSwagger(app);
+    }
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
@@ -29,12 +30,12 @@ async function bootstrap(): Promise<any> {
     }));
     app.use(cors());
 
-    app.setGlobalPrefix(API_DEFAULT_PREFIX);
+    app.setGlobalPrefix(process.env.API_PREFIX || API_DEFAULT_PREFIX);
 
     const logInterceptor = app.select(CommonModule).get(LogInterceptor);
     app.useGlobalInterceptors(logInterceptor);
 
-    await app.listen(API_DEFAULT_PORT);
+    await app.listen(process.env.API_PORT || API_DEFAULT_PORT);
 }
 
 function createSwagger(app: INestApplication) {
@@ -45,7 +46,7 @@ function createSwagger(app: INestApplication) {
         .setTitle(SWAGGER_TITLE)
         .setDescription(SWAGGER_DESCRIPTION)
         .setVersion(version)
-        .setBasePath(API_DEFAULT_PREFIX)
+        .setBasePath(process.env.API_PREFIX || API_DEFAULT_PREFIX)
         .setSchemes('https', 'http')
         .addBearerAuth('Bearer', 'header')
         .build();

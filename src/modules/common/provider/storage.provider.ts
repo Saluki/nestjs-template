@@ -3,7 +3,7 @@ import * as orm from 'typeorm';
 
 import { Passenger } from '../../passenger/model';
 import { Service } from '../../tokens';
-import { Config } from '../config';
+import { Config } from '../model';
 
 export const storageProvider = {
 
