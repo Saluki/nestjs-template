@@ -7,7 +7,7 @@ export function extractTokenPayload(request: Request): any {
 
     const header = request.header('Authorization');
 
-    if (_.isEmpty(header)) {
+    if (!header) {
         return null;
     }
 
@@ -19,8 +19,8 @@ export function extractTokenPayload(request: Request): any {
 
     try {
 
-        const env: { [a: string]: string } = process.env;
-        return jwt.verify(chunks[1], env.JWT_SECRET, {
+        const env = process.env;
+        return jwt.verify(chunks[1], `${env.JWT_SECRET}`, {
             algorithms: ['HS256'],
             issuer: 'DEFAULT_ISSUER'
         });

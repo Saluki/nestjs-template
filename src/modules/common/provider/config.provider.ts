@@ -10,7 +10,7 @@ export const configProvider = {
     provide: Service.CONFIG,
     useFactory: (config): Config => {
 
-        const env: { [a: string]: string } = process.env;
+        const env = process.env;
 
         const result = Joi.validate(env, Joi.object().unknown().keys({
             MYSQL_HOST: Joi.string().required(),
@@ -26,12 +26,12 @@ export const configProvider = {
         }
 
         return {
-            MYSQL_HOST: env.MYSQL_HOST,
+            MYSQL_HOST: `${env.MYSQL_HOST}`,
             MYSQL_PORT: _.toNumber(env.MYSQL_PORT),
-            MYSQL_USER: env.MYSQL_USER,
-            MYSQL_PASSWORD: env.MYSQL_PASSWORD,
-            MYSQL_DATABASE: env.MYSQL_DATABASE,
-            JWT_SECRET: env.JWT_SECRET
+            MYSQL_USER: `${env.MYSQL_USER}`,
+            MYSQL_PASSWORD: `${env.MYSQL_PASSWORD}`,
+            MYSQL_DATABASE: `${env.MYSQL_DATABASE}`,
+            JWT_SECRET: `${env.JWT_SECRET}`
         };
     }
 
