@@ -4,7 +4,7 @@ NestJS API project template
 
 [![License](https://img.shields.io/github/license/saluki/nestjs-template.svg)](https://github.com/saluki/nestjs-template/blob/master/LICENSE)
 
-Scaffold quickly your **next [NestJS](https://nestjs.com/) API project** with 
+Scaffold quickly your next [NestJS](https://nestjs.com/) API project with 
 ❤️ using this template
 
 - crafted for Docker environments
