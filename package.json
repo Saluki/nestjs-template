@@ -39,7 +39,7 @@
         "@types/joi": "^13.0.8",
         "@types/jsonwebtoken": "^7.2.6",
         "@types/lodash": "^4.14.108",
-        "@types/node": "^10.0.0",
+        "@types/node": "^8.0.0",
         "@types/supertest": "^2.0.4",
         "@types/winston": "^2.3.9",
         "env-cmd": "^8.0.1",
