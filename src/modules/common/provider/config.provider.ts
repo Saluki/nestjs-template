@@ -1,4 +1,5 @@
 
+import * as Joi from 'joi';
 import * as _ from 'lodash';
 
 import { Service } from '../../tokens';
@@ -10,6 +11,19 @@ export const configProvider = {
     useFactory: (config): Config => {
 
         const env: { [a: string]: string } = process.env;
+
+        const result = Joi.validate(env, Joi.object().unknown().keys({
+            MYSQL_HOST: Joi.string().required(),
+            MYSQL_PORT: Joi.string().required(),
+            MYSQL_USER: Joi.string().required(),
+            MYSQL_PASSWORD: Joi.string().required(),
+            MYSQL_DATABASE: Joi.string().required(),
+            JWT_SECRET: Joi.string().required()
+        }));
+
+        if (result.error) {
+            throw new Error('Configuration not valid ' + result.error.message);
+        }
 
         return {
             MYSQL_HOST: env.MYSQL_HOST,

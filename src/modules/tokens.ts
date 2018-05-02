@@ -1,22 +1,22 @@
 
-export namespace Repository {
+export enum Repository {
 
-    export const PASSENGER = 'passenger.repository';
-
-}
-
-export namespace Service {
-
-    export const STORAGE = 'storage.service';
-
-    export const CONFIG = 'config.service';
-
-    export const LOGGER = 'logger.service';
+    PASSENGER = 'passenger.repository'
 
 }
 
-export namespace Role {
+export enum Service {
 
-    export const RESTRICTED = 'restricted';
+    STORAGE = 'storage.service',
+
+    CONFIG = 'config.service',
+
+    LOGGER = 'logger.service'
+
+}
+
+export enum Role {
+
+    RESTRICTED = 'restricted'
 
 }
