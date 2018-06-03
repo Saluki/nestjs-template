@@ -11,8 +11,6 @@ export enum Service {
 
     CONFIG = 'config.service',
 
-    LOGGER = 'logger.service'
-
 }
 
 export enum Role {

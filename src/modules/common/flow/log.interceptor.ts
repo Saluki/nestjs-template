@@ -1,11 +1,10 @@
 
-import { ExecutionContext, HttpStatus, Inject, Injectable, NestInterceptor } from '@nestjs/common';
+import { ExecutionContext, HttpStatus, Injectable, NestInterceptor } from '@nestjs/common';
 import { Request } from 'express';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { LoggerInstance } from 'winston';
 
-import { Service } from '../../tokens';
+import { LoggerService } from '../provider';
 
 /* tslint:disable:no-any */
 
@@ -13,8 +12,7 @@ import { Service } from '../../tokens';
 export class LogInterceptor implements NestInterceptor {
 
     public constructor(
-        @Inject(Service.LOGGER)
-        private readonly logger: LoggerInstance
+        private readonly logger: LoggerService
     ) { }
 
     public intercept(context: ExecutionContext, call$: Observable<any>): Observable<any> {

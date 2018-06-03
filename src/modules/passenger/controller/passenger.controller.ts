@@ -1,9 +1,8 @@
 
-import { Body, Controller, Get, HttpStatus, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
-import { LoggerInstance } from 'winston';
 
-import { Service } from '../../tokens';
+import { LoggerService } from '../../common/provider';
 import { PassengerPipe } from '../flow';
 import { PassengerData, PassengerInput } from '../model';
 import { PassengerService } from '../service';
@@ -14,8 +13,7 @@ import { PassengerService } from '../service';
 export class PassengerController {
 
     public constructor(
-        @Inject(Service.LOGGER)
-        private readonly logger: LoggerInstance,
+        private readonly logger: LoggerService,
         private readonly passengerService: PassengerService
     ) { }
 
