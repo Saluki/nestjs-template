@@ -1,17 +1,15 @@
 
-import { ExecutionContext, HttpStatus, Inject, Interceptor, NestInterceptor } from '@nestjs/common';
+import { ExecutionContext, HttpStatus, Inject, Injectable, NestInterceptor } from '@nestjs/common';
 import { Request } from 'express';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { LoggerInstance } from 'winston';
 
 import { Service } from '../../tokens';
 
 /* tslint:disable:no-any */
 
-@Interceptor()
+@Injectable()
 export class LogInterceptor implements NestInterceptor {
 
     public constructor(
@@ -19,21 +17,24 @@ export class LogInterceptor implements NestInterceptor {
         private readonly logger: LoggerInstance
     ) { }
 
-    public intercept(request: Request, context: ExecutionContext, stream: Observable<any>): Observable<any> {
+    public intercept(context: ExecutionContext, call$: Observable<any>): Observable<any> {
 
         const startTime = new Date().getMilliseconds();
+        const request = context.switchToHttp().getRequest();
 
-        return stream
-            .map(data => {
+        return call$.pipe(
+            map(data => {
                 const responseStatus = (request.method === 'POST') ? HttpStatus.CREATED : HttpStatus.OK;
                 this.logger.info(`${this.getTimeDelta(startTime)} ${request.ip} ${responseStatus} ${request.method} ${this.getUrl(request)}`);
                 return data;
-            })
-            .catch(err => {
+            }),
+            catchError(err => {
                 // Log fomat inspired by the Squid docs
                 // See https://docs.trafficserver.apache.org/en/6.1.x/admin-guide/monitoring/logging/log-formats.en.html
-                this.logger.error(`${this.getTimeDelta(startTime)} ${request.ip} ${err.status} ${request.method} ${this.getUrl(request)}`); return Observable.throw(err);
-            });
+                this.logger.error(`${this.getTimeDelta(startTime)} ${request.ip} ${err.status} ${request.method} ${this.getUrl(request)}`);
+                return throwError(err);
+            })
+        );
     }
 
     private getTimeDelta(startTime: number): number {

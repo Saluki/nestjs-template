@@ -1,11 +1,11 @@
 
-import { Component, Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 
 import { Repository as RepositoryToken } from '../../tokens';
 import { Passenger, PassengerInput } from '../model';
 
-@Component()
+@Injectable()
 export class PassengerService {
 
     public constructor(

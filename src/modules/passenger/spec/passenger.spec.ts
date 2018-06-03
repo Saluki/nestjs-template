@@ -13,7 +13,7 @@ describe('Passenger API', () => {
     beforeAll(async () => {
 
         const module = await Test.createTestingModule({
-            modules: [PassengerModule],
+            imports: [PassengerModule],
         }).compile();
 
         const app = module.createNestApplication(server);

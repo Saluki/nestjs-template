@@ -1,9 +1,9 @@
 
-import { ArgumentMetadata, HttpException, HttpStatus, Pipe, PipeTransform } from '@nestjs/common';
+import { ArgumentMetadata, HttpException, HttpStatus, Injectable, PipeTransform } from '@nestjs/common';
 
 /* tslint:disable:no-any */
 
-@Pipe()
+@Injectable()
 export class IdentifierPipe implements PipeTransform<any> {
 
     public transform(value: any, metadata: ArgumentMetadata) {

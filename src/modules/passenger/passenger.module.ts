@@ -7,10 +7,10 @@ import { passengerRepositoryProvider } from './provider';
 import { PassengerService } from './service';
 
 @Module({
-    modules: [
+    imports: [
         CommonModule
     ],
-    components: [
+    providers: [
         passengerRepositoryProvider,
         PassengerService
     ],

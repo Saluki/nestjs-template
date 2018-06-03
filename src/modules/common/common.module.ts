@@ -5,7 +5,7 @@ import { LogInterceptor } from './flow';
 import { configProvider, loggerProvider, storageProvider } from './provider';
 
 @Module({
-    components: [
+    providers: [
         configProvider,
         storageProvider,
         loggerProvider,
