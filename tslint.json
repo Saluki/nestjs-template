@@ -14,10 +14,10 @@
             {
                 "order": [
                     "public-static-field",
-                    "public-instance-field",
-                    "public-constructor",
                     "private-static-field",
+                    "public-instance-field",
                     "private-instance-field",
+                    "public-constructor",
                     "private-constructor",
                     "public-instance-method",
                     "protected-instance-method",
