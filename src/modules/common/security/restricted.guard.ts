@@ -1,6 +1,5 @@
 
-import { CanActivate, ExecutionContext, Inject, Injectable } from '@nestjs/common';
-import { Request } from 'express';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 
 import { Role } from '../../tokens';
 import { extractTokenPayload } from './security-utils';

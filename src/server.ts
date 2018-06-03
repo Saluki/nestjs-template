@@ -16,8 +16,7 @@ const SWAGGER_TITLE = 'Passenger API';
 const SWAGGER_DESCRIPTION = 'API used for passenger management';
 const SWAGGER_PREFIX = '/docs';
 
-// tslint:disable-next-line:no-any
-async function bootstrap(): Promise<any> {
+async function bootstrap(): Promise<void> {
 
     const app = await NestFactory.create(ApplicationModule);
 
@@ -56,4 +55,5 @@ function createSwagger(app: INestApplication) {
     SwaggerModule.setup(SWAGGER_PREFIX, app, document);
 }
 
-bootstrap();
+// tslint:disable-next-line:no-console
+bootstrap().catch(err => console.error(err));

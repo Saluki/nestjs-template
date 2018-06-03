@@ -1,9 +1,11 @@
 
 import { Request } from 'express';
 import * as jwt from 'jsonwebtoken';
-import * as _ from 'lodash';
 
-export function extractTokenPayload(request: Request): any {
+const PAYLOAD_COMPONENTS = 2;
+
+// tslint:disable-next-line:no-any
+export function extractTokenPayload(request: Request): any | null {
 
     const header = request.header('Authorization');
 
@@ -13,7 +15,7 @@ export function extractTokenPayload(request: Request): any {
 
     const chunks = header.split(' ');
 
-    if (chunks.length !== 2 || chunks[0] !== 'Bearer') {
+    if (chunks.length !== PAYLOAD_COMPONENTS || chunks[0] !== 'Bearer') {
         return null;
     }
 

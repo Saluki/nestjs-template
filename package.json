@@ -11,7 +11,7 @@
         "build": "tsc",
         "build:docker": "NODE_ENV=development npm install && npm run build",
         "test": "env-cmd .env jest --config=jest.json --notify",
-        "lint": "tslint -c tslint.json 'src/**/*.ts'"
+        "lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'"
     },
     "dependencies": {
         "@nestjs/common": "^5.0.1",

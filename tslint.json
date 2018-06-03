@@ -9,7 +9,22 @@
             true,
             "check-constructor"
         ],
-        "member-ordering": true,
+        "member-ordering": [
+            true,
+            {
+                "order": [
+                    "public-static-field",
+                    "public-instance-field",
+                    "public-constructor",
+                    "private-static-field",
+                    "private-instance-field",
+                    "private-constructor",
+                    "public-instance-method",
+                    "protected-instance-method",
+                    "private-instance-method"
+                ]
+            }
+        ],
         "no-any": true,
         "no-empty-interface": true,
         "no-import-side-effect": [

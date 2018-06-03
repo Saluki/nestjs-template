@@ -1,5 +1,5 @@
 
-import { Body, Controller, Get, HttpException, HttpStatus, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Inject, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { LoggerInstance } from 'winston';
 
