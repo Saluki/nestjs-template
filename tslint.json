@@ -6,8 +6,7 @@
     "rules": {
         "adjacent-overload-signatures": true,
         "member-access": [
-            true,
-            "check-constructor"
+            true
         ],
         "member-ordering": [
             true,
