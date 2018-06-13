@@ -36,6 +36,7 @@ The following improvements are currently in progress :
 - Dockerfile improvements and better usage of environment variables
 - Project structure documentation
 - TypeORM migration support
+- Healtcheck support
 
 Contributing
 ---
