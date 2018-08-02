@@ -14,10 +14,10 @@
         "lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'"
     },
     "dependencies": {
-        "@nestjs/common": "^5.0.1",
-        "@nestjs/core": "^5.0.1",
-        "@nestjs/testing": "^5.0.1",
-        "@nestjs/swagger": "^2.0.2",
+        "@nestjs/common": "^5.1.0",
+        "@nestjs/core": "^5.1.0",
+        "@nestjs/testing": "^5.1.0",
+        "@nestjs/swagger": "^2.2.0",
         "body-parser": "^1.18.3",
         "cors": "^2.8.4",
         "joi": "^13.3.0",
