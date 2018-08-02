@@ -17,5 +17,6 @@
     "coverageReporters": [
         "json",
         "lcov"
-    ]
+    ],
+    "testURL": "http://localhost"
 }
