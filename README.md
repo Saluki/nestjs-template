@@ -31,12 +31,16 @@ Next improvements
 
 The following improvements are currently in progress : 
 
-- Cleaner authentication and authorization with Passport
-- Configuration validation
-- Dockerfile improvements and better usage of environment variables
-- Project structure documentation
-- TypeORM migration support
-- Healtcheck support
+- [ ] Cleaner authentication and authorization with Passport
+- [x] Configuration validation
+- [ ] Dockerfile improvements and better usage of environment variables
+- [ ] Project structure documentation
+- [x] TypeORM migration support
+- [ ] Healtcheck support
+- [ ] Better logging configuration with environment variables
+- [ ] Adding better mock support with TS Mockito
+- [ ] Working further on examples for production instructions
+
 
 Contributing
 ---
