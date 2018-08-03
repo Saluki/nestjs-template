@@ -8,29 +8,41 @@ import { Config } from '../model';
 export const configProvider = {
 
     provide: Service.CONFIG,
-    useFactory: (config): Config => {
+    useFactory: (): Config => {
 
         const env = process.env;
 
         const result = Joi.validate(env, Joi.object().unknown().keys({
-            MYSQL_HOST: Joi.string().required(),
-            MYSQL_PORT: Joi.string().required(),
-            MYSQL_USER: Joi.string().required(),
-            MYSQL_PASSWORD: Joi.string().required(),
-            MYSQL_DATABASE: Joi.string().required(),
+            API_PORT: Joi.string().required(),
+            API_PREFIX: Joi.string().required(),
+            API_CORS: Joi.string().required(),
+            SWAGGER_ENABLE: Joi.string().required(),
+            TYPEORM_CONNECTION: Joi.string().required(),
+            TYPEORM_HOST: Joi.string().required(),
+            TYPEORM_PORT: Joi.string().required(),
+            TYPEORM_USERNAME: Joi.string().required(),
+            TYPEORM_PASSWORD: Joi.string().required(),
+            TYPEORM_DATABASE: Joi.string().required(),
+            TYPEORM_ENTITIES: Joi.string().required(),
             JWT_SECRET: Joi.string().required()
         }));
 
         if (result.error) {
-            throw new Error('Configuration not valid ' + result.error.message);
+            throw new Error('Configuration not valid: ' + result.error.message);
         }
 
         return {
-            MYSQL_HOST: `${env.MYSQL_HOST}`,
-            MYSQL_PORT: _.toNumber(env.MYSQL_PORT),
-            MYSQL_USER: `${env.MYSQL_USER}`,
-            MYSQL_PASSWORD: `${env.MYSQL_PASSWORD}`,
-            MYSQL_DATABASE: `${env.MYSQL_DATABASE}`,
+            API_PORT: _.toNumber(env.API_PORT),
+            API_PREFIX: `${env.API_PREFIX}`,
+            API_CORS: `${env.API_CORS}`,
+            SWAGGER_ENABLE: _.toNumber(env.SWAGGER_ENABLE),
+            TYPEORM_CONNECTION: `${env.TYPEORM_CONNECTION}`,
+            TYPEORM_HOST: `${env.TYPEORM_HOST}`,
+            TYPEORM_PORT: _.toNumber(env.TYPEORM_PORT),
+            TYPEORM_USERNAME: `${env.TYPEORM_USERNAME}`,
+            TYPEORM_PASSWORD: `${env.TYPEORM_PASSWORD}`,
+            TYPEORM_DATABASE: `${env.TYPEORM_DATABASE}`,
+            TYPEORM_ENTITIES: `${env.TYPEORM_ENTITIES}`,
             JWT_SECRET: `${env.JWT_SECRET}`
         };
     }

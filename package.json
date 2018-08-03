@@ -16,10 +16,13 @@
     "dependencies": {
         "@nestjs/common": "^5.1.0",
         "@nestjs/core": "^5.1.0",
-        "@nestjs/testing": "^5.1.0",
         "@nestjs/swagger": "^2.2.0",
+        "@nestjs/testing": "^5.1.0",
+        "@nestjs/typeorm": "^5.1.0",
         "body-parser": "^1.18.3",
         "cors": "^2.8.4",
+        "express": "^4.16.3",
+        "helmet": "^3.13.0",
         "joi": "^13.5.2",
         "jsonwebtoken": "^8.3.0",
         "lodash": "^4.17.10",
@@ -27,9 +30,7 @@
         "reflect-metadata": "^0.1.12",
         "rxjs": "^6.2.2",
         "typeorm": "^0.2.7",
-        "winston": "^3.0.0",
-        "express": "^4.16.3",
-        "helmet": "^3.13.0"
+        "winston": "^3.0.0"
     },
     "devDependencies": {
         "@types/body-parser": "^1.17.0",

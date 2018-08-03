@@ -1,15 +1,27 @@
 
 export interface Config {
 
-    readonly MYSQL_HOST: string;
+    readonly API_PORT: number;
 
-    readonly MYSQL_PORT: number;
+    readonly API_PREFIX: string;
 
-    readonly MYSQL_USER: string;
+    readonly API_CORS: string;
 
-    readonly MYSQL_PASSWORD: string;
+    readonly SWAGGER_ENABLE: number;
 
-    readonly MYSQL_DATABASE: string;
+    readonly TYPEORM_CONNECTION: string;
+
+    readonly TYPEORM_HOST: string;
+
+    readonly TYPEORM_PORT: number;
+
+    readonly TYPEORM_USERNAME: string;
+
+    readonly TYPEORM_PASSWORD: string;
+
+    readonly TYPEORM_DATABASE: string;
+
+    readonly TYPEORM_ENTITIES: string;
 
     readonly JWT_SECRET: string;
 

@@ -3,7 +3,7 @@ import { HttpStatus, INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
 
-import { PassengerModule } from '../passenger.module';
+import { ApplicationModule } from '../../app.module';
 
 /**
  * Passenger API end-to-end tests
@@ -19,8 +19,9 @@ describe('Passenger API', () => {
     beforeAll(async () => {
 
         const module = await Test.createTestingModule({
-            imports: [PassengerModule],
-        }).compile();
+            imports: [ApplicationModule],
+        })
+        .compile();
 
         app = module.createNestApplication();
         await app.init();

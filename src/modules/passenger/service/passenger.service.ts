@@ -1,15 +1,15 @@
 
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { Repository as RepositoryToken } from '../../tokens';
 import { Passenger, PassengerInput } from '../model';
 
 @Injectable()
 export class PassengerService {
 
     public constructor(
-        @Inject(RepositoryToken.PASSENGER)
+        @InjectRepository(Passenger)
         private readonly passengerRepository: Repository<Passenger>
     ) { }
 

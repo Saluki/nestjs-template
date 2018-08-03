@@ -1,10 +1,4 @@
 
-export enum Repository {
-
-    PASSENGER = 'passenger.repository'
-
-}
-
 export enum Service {
 
     STORAGE = 'storage.service',

@@ -1,17 +1,20 @@
 
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { CommonModule } from '../common';
 import { PassengerController } from './controller';
-import { passengerRepositoryProvider } from './provider';
+import { Passenger } from './model';
 import { PassengerService } from './service';
 
 @Module({
     imports: [
-        CommonModule
+        CommonModule,
+        TypeOrmModule.forFeature([
+            Passenger
+        ])
     ],
     providers: [
-        passengerRepositoryProvider,
         PassengerService
     ],
     controllers: [
