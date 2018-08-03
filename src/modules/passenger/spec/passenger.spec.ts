@@ -1,14 +1,20 @@
 
-import { HttpStatus } from '@nestjs/common';
+import { HttpStatus, INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import * as express from 'express';
 import * as request from 'supertest';
 
 import { PassengerModule } from '../passenger.module';
 
+/**
+ * Passenger API end-to-end tests
+ *
+ * This test suite performs end-to-end tests on the passenger API endpoints,
+ * allowing us to test the behavior of the API and making sure that it fits
+ * the requirements.
+ */
 describe('Passenger API', () => {
 
-    const server = express();
+    let app: INestApplication;
 
     beforeAll(async () => {
 
@@ -16,13 +22,17 @@ describe('Passenger API', () => {
             imports: [PassengerModule],
         }).compile();
 
-        const app = module.createNestApplication(server);
+        app = module.createNestApplication();
         await app.init();
     });
 
+    afterAll(async () =>
+        app.close()
+    );
+
     it('Should return empty passenger list', () =>
 
-        request(server)
+        request(app.getHttpServer())
             .get('/passengers')
             .expect(HttpStatus.OK)
             .then(response => {
@@ -33,7 +43,7 @@ describe('Passenger API', () => {
 
     it('Should insert new passenger in the API', () =>
 
-        request(server)
+        request(app.getHttpServer())
             .post('/passengers')
             .send({
                 firstName: 'John',
