@@ -11,7 +11,10 @@
         "build": "tsc",
         "build:docker": "NODE_ENV=development npm install && npm run build",
         "test": "env-cmd .env jest --config=jest.json --notify",
-        "lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'"
+        "lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'",
+        "migration:create": "env-cmd .env rm -typeorm migration:create -n",
+        "migration:run": "env-cmd .env ts-node ./node_modules/.bin/typeorm migration:run",
+        "migration:revert": "env-cmd .env ts-node ./node_modules/.bin/typeorm migration:revert"
     },
     "dependencies": {
         "@nestjs/common": "^5.1.0",

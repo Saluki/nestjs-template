@@ -2,7 +2,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { PassengerData } from '.';
 
-@Entity()
+@Entity({ name: 'passengers' })
 export class Passenger {
 
     public static readonly NAME_LENGTH = 50;
