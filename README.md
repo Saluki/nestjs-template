@@ -62,7 +62,63 @@ You can now head to `http://localhost:4000/docs` and see your API Swagger docs. 
 
 ## 2. Project structure
 
+This template was made with a well-defined directory structure.
+
+```sh
+src/
+├── migrations/  # TypeORM migrations created using "npm run migration:create"
+├── modules
+│   ├── app.module.ts
+│   ├── common/  # The common module contains pipes, guards, service and provider used in the whole application
+│   ├── passenger/  # A module example that manages "passenger" resources
+│   │   ├── controller/
+│   │   │   └── passenger.controller.ts
+│   │   ├── flow/  # The "flow" directory contains the pipes, interceptors and everything that may change the request or response flow
+│   │   │   └── passenger.pipe.ts
+│   │   ├── model/
+│   │   │   ├── passenger.data.ts  # The model that will be returned in the response
+│   │   │   ├── passenger.entity.ts  # The actual TypeORM entity
+│   │   │   └── passenger.input.ts  # The model that is used in the request
+│   │   ├── passenger.module.ts
+│   │   ├── service/
+│   │   │   └── passenger.service.ts
+│   │   └── spec/
+│   └── tokens.ts
+└── server.ts
+```
+
 ## 3. Default NPM commands
+
+The NPM commands below are already included with this template and can be used to quickly run, build and test your project.
+
+```sh
+# Start the application using the transpiled NodeJS
+npm run start
+
+# Run the application using "ts-node"
+npm run dev
+
+# Transpile the TypeScript files
+npm run build
+
+# Internal command used during the Docker build stage
+npm run build:docker
+
+# Run the project' functional tests
+npm run test
+
+# Lint the project files using TSLint
+npm run lint
+
+# Create a new migration named MyMigration
+npm run migration:create [MyMigration]
+
+# Run the TypeORM migrations
+npm run migration:run
+
+# Revert the TypeORM migrations
+npm run migration:revert
+```
 
 ## 4. Project goals
 
