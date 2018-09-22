@@ -58,7 +58,7 @@ You are now ready to launch the NestJS application using the command below.
 npm run dev
 ```
 
-You can now head to `http://localhost:4000/docs` and see your API Swagger docs. The example passenger API is located at the `http://localhost/api/v2/passengers` endpoint.
+You can now head to `http://localhost:4000/docs` and see your API Swagger docs. The example passenger API is located at the `http://localhost:4000/api/v2/passengers` endpoint.
 
 ## 2. Project structure
 
