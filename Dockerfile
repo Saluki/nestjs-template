@@ -13,7 +13,7 @@
 # https://www.bretfisher.com/node-docker-good-defaults/
 # http://goldbergyoni.com/checklist-best-practice-of-node-js-in-production/
 
-FROM node:8-alpine as builder
+FROM node:10-alpine as builder
 
 ENV NODE_ENV build
 
@@ -27,7 +27,7 @@ RUN npm install \
 
 # ---
 
-FROM node:8-alpine
+FROM node:10-alpine
 
 ENV NODE_ENV production
 
