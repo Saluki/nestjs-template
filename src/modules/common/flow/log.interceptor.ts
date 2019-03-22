@@ -1,12 +1,9 @@
-
-import { ExecutionContext, HttpStatus, Injectable, NestInterceptor } from '@nestjs/common';
-import { Request } from 'express';
+import { ExecutionContext, HttpStatus, Injectable, NestInterceptor, CallHandler } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { LoggerService } from '../provider';
-
-/* tslint:disable:no-any */
 
 @Injectable()
 export class LogInterceptor implements NestInterceptor {
@@ -15,12 +12,12 @@ export class LogInterceptor implements NestInterceptor {
         private readonly logger: LoggerService
     ) { }
 
-    public intercept(context: ExecutionContext, call$: Observable<any>): Observable<any> {
+    public intercept(context: ExecutionContext, next: CallHandler): Observable<Response> {
 
         const startTime = new Date().getMilliseconds();
         const request = context.switchToHttp().getRequest();
 
-        return call$.pipe(
+        return next.handle().pipe(
             map(data => {
                 const responseStatus = (request.method === 'POST') ? HttpStatus.CREATED : HttpStatus.OK;
                 this.logger.info(`${this.getTimeDelta(startTime)} ${request.ip} ${responseStatus} ${request.method} ${this.getUrl(request)}`);
