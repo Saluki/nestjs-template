@@ -54,7 +54,11 @@ Last but not least, define a `JWT_SECRET` to sign the JWT tokens or leave the de
 
 You are now ready to launch the NestJS application using the command below.
 
-```
+```sh
+# Perform migrations in your database using TypeORM
+npm run migration:run
+
+# Launch the development server with TSNode
 npm run dev
 ```
 
