@@ -11,7 +11,8 @@
     "sourceMap": true,
     "allowJs": true,
     "outDir": "./dist",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "noUnusedLocals": true
   },
   "include": [
     "src/**/*"

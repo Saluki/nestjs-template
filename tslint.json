@@ -48,7 +48,6 @@
       "ignore-same-line"
     ],
     "forin": true,
-    "no-unused-variable": true,
     "no-unused-expression": true,
     "no-conditional-assignment": true,
     "no-console": true,
