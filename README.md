@@ -1,5 +1,5 @@
 
-# NestJS API project template
+# NestJS 6 API project template
 
 [![License](https://img.shields.io/github/license/saluki/nestjs-template.svg)](https://github.com/saluki/nestjs-template/blob/master/LICENSE)
 
