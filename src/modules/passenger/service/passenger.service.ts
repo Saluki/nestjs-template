@@ -24,7 +24,7 @@ export class PassengerService {
         passenger.firstName = input.firstName;
         passenger.lastName = input.lastName;
 
-        return this.passengerRepository.create(passenger);
+        return this.passengerRepository.save(passenger);
     }
 
 }
