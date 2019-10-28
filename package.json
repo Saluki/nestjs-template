@@ -50,6 +50,7 @@
     "@types/supertest": "^2.0.8",
     "@types/winston": "^2.4.4",
     "env-cmd": "^10.0.1",
+    "husky": "^3.0.9",
     "jest": "^24.9.0",
     "nodemon": "^1.19.4",
     "rimraf": "^3.0.0",
@@ -59,5 +60,10 @@
     "tslint": "^5.20.0",
     "tslint-config-security": "^1.16.0",
     "typescript": "^3.6.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
