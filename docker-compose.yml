@@ -1,0 +1,21 @@
+# THIS DOCKERFILE IS INTENDED FOR DEVELOPMENT ENVIRONMENTS
+# DO NOT USE THIS FOR PRODUCTION USAGES.
+
+version: '3'
+
+services:
+  mariadb:
+    image: 'bitnami/mariadb:10.3'
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'mariadb_data:/bitnami/mariadb'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_DATABASE=nestjs
+      - MARIADB_USER=nestjs
+      - MARIADB_PASSWORD=password
+
+volumes:
+  mariadb_data:
+    driver: local
