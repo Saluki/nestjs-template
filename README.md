@@ -18,7 +18,7 @@ Scaffold quickly your next [NestJS](https://nestjs.com/) API project with
 Before starting, make sure you have at least those components on your workstation:
 
 - An up-to-date release of [NodeJS](https://nodejs.org/) and NPM
-- A database such as MariaDB, MySQL or PostgreSQL
+- A database such as MariaDB, MySQL or PostgreSQL. You may use the provided `docker-compose` file.
 
 [Docker](https://www.docker.com/) may also be useful for advanced testing and image building, although it is not required for development.
 
@@ -41,7 +41,7 @@ Once the dependencies are installed, you can now configure your project by creat
 
 ```
 cp .env.example .env
-nano .env
+vi .env
 ```
 
 For a standard development configuration, you can leave the default values for `API_PORT`, `API_PREFIX` and `API_CORS` under the `Api configuration` section. The `SWAGGER_ENABLE` rule allows you to control the Swagger documentation module for NestJS. Leave it to `1` when starting this example.
