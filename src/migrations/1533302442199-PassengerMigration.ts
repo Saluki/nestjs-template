@@ -4,8 +4,7 @@ import { TableOptions } from 'typeorm/schema-builder/options/TableOptions';
 
 export class PassengerMigration1533302442199 implements MigrationInterface {
 
-    // tslint:disable-next-line:no-any
-    public async up(queryRunner: QueryRunner): Promise<any> {
+    public async up(queryRunner: QueryRunner): Promise<void> {
 
         const tableOptions: TableOptions = {
             name: 'passengers',
@@ -13,7 +12,9 @@ export class PassengerMigration1533302442199 implements MigrationInterface {
                 {
                     name: 'id',
                     type: 'int',
-                    isPrimary: true
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: 'increment'
                 },
                 {
                     name: 'first_name',
@@ -33,8 +34,7 @@ export class PassengerMigration1533302442199 implements MigrationInterface {
         );
     }
 
-    // tslint:disable-next-line:no-any
-    public async down(queryRunner: QueryRunner): Promise<any> {
+    public async down(queryRunner: QueryRunner): Promise<void> {
 
         await queryRunner.dropTable('passengers');
     }
