@@ -22,7 +22,7 @@ WORKDIR /home/node
 
 COPY . /home/node
 
-RUN npm install \
+RUN npm ci \
     && npm run build
 
 # ---
@@ -37,6 +37,6 @@ WORKDIR /home/node
 COPY --from=builder /home/node/package*.json /home/node/
 COPY --from=builder /home/node/dist/ /home/node/dist/
 
-RUN npm install
+RUN npm ci
 
 CMD ["node", "dist/server.js"]
