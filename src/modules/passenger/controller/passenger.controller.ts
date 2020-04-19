@@ -1,6 +1,5 @@
-
 import { Body, Controller, Get, HttpStatus, Post } from '@nestjs/common';
-import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { LoggerService } from '../../common/provider';
 import { PassengerPipe } from '../flow';
@@ -8,7 +7,7 @@ import { PassengerData, PassengerInput } from '../model';
 import { PassengerService } from '../service';
 
 @Controller('passengers')
-@ApiUseTags('passenger')
+@ApiTags('passenger')
 @ApiBearerAuth()
 export class PassengerController {
 

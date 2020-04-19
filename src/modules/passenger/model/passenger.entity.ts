@@ -1,4 +1,3 @@
-
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { PassengerData } from '.';
 

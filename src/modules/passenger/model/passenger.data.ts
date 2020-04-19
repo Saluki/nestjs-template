@@ -1,15 +1,14 @@
-
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class PassengerData {
 
-    @ApiModelProperty()
+    @ApiProperty({ description: 'Passenger unique ID', example: '36635263' })
     public readonly id: number;
 
-    @ApiModelProperty()
+    @ApiProperty({ description: 'First name', example: 'John' })
     public readonly firstName: string;
 
-    @ApiModelProperty()
+    @ApiProperty({ description: 'Last name', example: 'Doe' })
     public readonly lastName: string;
 
 }

@@ -1,12 +1,11 @@
-
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class PassengerInput {
 
-    @ApiModelProperty()
+    @ApiProperty()
     public readonly firstName: string;
 
-    @ApiModelProperty()
+    @ApiProperty()
     public readonly lastName: string;
 
 }
