@@ -1,14 +1,14 @@
 
-# NestJS 6 API project template
+# NestJS 7 API project template
 
 [![License](https://img.shields.io/github/license/saluki/nestjs-template.svg)](https://github.com/saluki/nestjs-template/blob/master/LICENSE)
 
-Scaffold quickly your next [NestJS](https://nestjs.com/) API project with 
+Scaffold quickly your next [NestJS 7](https://nestjs.com/) API project with 
 ❤️ using this template
 
 - Crafted for Docker environments (Dockerfile support and environment variables)
 - REST API with [TypeORM](http://typeorm.io) support 
-- Swagger documentation, [Joi](https://github.com/hapijs/joi) validation, logger, ...
+- Swagger documentation, [Joi](https://github.com/hapijs/joi) validation, Winston logger, ...
 - Folder structure, code samples and best practices
 
 ## 1. Getting started
@@ -135,11 +135,10 @@ The following improvements are currently in progress :
 - [ ] Cleaner authentication and authorization with Passport
 - [x] Configuration validation
 - [ ] Dockerfile improvements and better usage of environment variables
-- [ ] Project structure documentation
+- [x] Project structure documentation
 - [x] TypeORM migration support
 - [ ] Healtcheck support
 - [ ] Better logging configuration with environment variables
-- [ ] Adding better mock support with TS Mockito
 - [ ] Working further on examples for production instructions
 
 ## 6. Contributing
