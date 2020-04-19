@@ -1,8 +1,6 @@
-
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as bodyParser from 'body-parser';
-import * as cors from 'cors';
 import * as helmet from 'helmet';
 
 import { INestApplication } from '@nestjs/common';
@@ -20,17 +18,14 @@ async function bootstrap(): Promise<void> {
 
     const app = await NestFactory.create(ApplicationModule);
 
+    app.setGlobalPrefix(process.env.API_PREFIX || API_DEFAULT_PREFIX);
+
     if (!process.env.SWAGGER_ENABLE || process.env.SWAGGER_ENABLE === '1') {
         createSwagger(app);
     }
 
     app.use(bodyParser.json());
     app.use(helmet());
-    app.use(cors({
-        origin: process.env.API_CORS || '*'
-    }));
-
-    app.setGlobalPrefix(process.env.API_PREFIX || API_DEFAULT_PREFIX);
 
     const logInterceptor = app.select(CommonModule).get(LogInterceptor);
     app.useGlobalInterceptors(logInterceptor);
@@ -46,9 +41,7 @@ function createSwagger(app: INestApplication) {
         .setTitle(SWAGGER_TITLE)
         .setDescription(SWAGGER_DESCRIPTION)
         .setVersion(version)
-        .setBasePath(process.env.API_PREFIX || API_DEFAULT_PREFIX)
-        .setSchemes('https', 'http')
-        .addBearerAuth('Bearer', 'header')
+        .addBearerAuth()
         .build();
 
     const document = SwaggerModule.createDocument(app, options);
