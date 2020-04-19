@@ -1,4 +1,3 @@
-
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 
 import { Role } from '../../tokens';

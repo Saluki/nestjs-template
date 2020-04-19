@@ -1,5 +1,4 @@
-
-import * as Joi from 'joi';
+import * as Joi from '@hapi/joi';
 import * as _ from 'lodash';
 
 import { Service } from '../../tokens';
@@ -11,11 +10,9 @@ export const configProvider = {
     useFactory: (): Config => {
 
         const env = process.env;
-
-        const result = Joi.validate(env, Joi.object().unknown().keys({
+        const validationSchema = Joi.object().unknown().keys({
             API_PORT: Joi.string().required(),
             API_PREFIX: Joi.string().required(),
-            API_CORS: Joi.string().required(),
             SWAGGER_ENABLE: Joi.string().required(),
             TYPEORM_CONNECTION: Joi.string().required(),
             TYPEORM_HOST: Joi.string().required(),
@@ -25,7 +22,9 @@ export const configProvider = {
             TYPEORM_DATABASE: Joi.string().required(),
             TYPEORM_ENTITIES: Joi.string().required(),
             JWT_SECRET: Joi.string().required()
-        }));
+        });
+
+        const result = validationSchema.validate(env);
 
         if (result.error) {
             throw new Error('Configuration not valid: ' + result.error.message);
@@ -34,7 +33,6 @@ export const configProvider = {
         return {
             API_PORT: _.toNumber(env.API_PORT),
             API_PREFIX: `${env.API_PREFIX}`,
-            API_CORS: `${env.API_CORS}`,
             SWAGGER_ENABLE: _.toNumber(env.SWAGGER_ENABLE),
             TYPEORM_CONNECTION: `${env.TYPEORM_CONNECTION}`,
             TYPEORM_HOST: `${env.TYPEORM_HOST}`,

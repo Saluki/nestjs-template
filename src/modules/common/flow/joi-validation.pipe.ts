@@ -1,17 +1,14 @@
-
-import { ArgumentMetadata, HttpException, HttpStatus, Injectable, PipeTransform } from '@nestjs/common';
-import * as Joi from 'joi';
-
-/* tslint:disable:no-any */
+import * as Joi from '@hapi/joi';
+import { HttpException, HttpStatus, Injectable, PipeTransform } from '@nestjs/common';
 
 @Injectable()
-export abstract class JoiValidationPipe implements PipeTransform<any> {
+export abstract class JoiValidationPipe implements PipeTransform<unknown> {
 
-    public transform(value: any, metadata: ArgumentMetadata) {
+    public transform(value: unknown): unknown {
 
-        const result = Joi.validate(value, this.buildSchema());
+        const result = this.buildSchema().validate(value);
 
-        if (result.error !== null) {
+        if (result.error) {
             throw new HttpException({
                 message: 'Validation failed',
                 detail: result.error.message.replace(/"/g, `'`),
@@ -22,6 +19,6 @@ export abstract class JoiValidationPipe implements PipeTransform<any> {
         return result.value;
     }
 
-    public abstract buildSchema(): object;
+    public abstract buildSchema(): Joi.Schema;
 
 }
