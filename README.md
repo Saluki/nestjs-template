@@ -132,7 +132,6 @@ The goal of this project is to provide a clean and up-to-date "starter pack" for
 
 The following improvements are currently in progress : 
 
-- [ ] Cleaner authentication and authorization with Passport
 - [x] Configuration validation
 - [ ] Dockerfile improvements and better usage of environment variables
 - [x] Project structure documentation
