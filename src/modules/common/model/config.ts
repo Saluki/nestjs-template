@@ -22,4 +22,6 @@ export interface Config {
 
     readonly JWT_SECRET: string;
 
+    readonly PASSENGERS_ALLOWED: string;
+
 }

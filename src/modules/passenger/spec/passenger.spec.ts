@@ -1,6 +1,7 @@
 import { HttpStatus, INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
+import * as jwt from 'jsonwebtoken';
 
 import { ApplicationModule } from '../../app.module';
 
@@ -41,10 +42,16 @@ describe('Passenger API', () => {
             })
     );
 
-    it('Should insert new passenger in the API', () =>
+    it('Should insert new passenger in the API', () => {
 
-        request(app.getHttpServer())
+        const token = jwt.sign({ role: 'restricted' }, `${process.env.JWT_SECRET}`, {
+            algorithm: 'HS256',
+            issuer: 'DEFAULT_ISSUER'
+        });
+
+        return request(app.getHttpServer())
             .post('/passengers')
+            .set('Authorization', `Bearer ${token}`)
             .send({
                 firstName: 'John',
                 lastName: 'Doe'
@@ -54,6 +61,6 @@ describe('Passenger API', () => {
                 expect(response.body.firstName).toEqual('John');
                 expect(response.body.lastName).toEqual('Doe');
             })
-    );
+    });
 
 });
