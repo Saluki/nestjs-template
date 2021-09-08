@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as bodyParser from 'body-parser';
+import { json } from 'express';
 import * as helmet from 'helmet';
 
 import { ApplicationModule } from './modules/app.module';
@@ -64,7 +64,7 @@ async function bootstrap(): Promise<void> {
         createSwagger(app);
     }
 
-    app.use(bodyParser.json());
+    app.use(json());
     app.use(helmet());
 
     const logInterceptor = app.select(CommonModule).get(LogInterceptor);
