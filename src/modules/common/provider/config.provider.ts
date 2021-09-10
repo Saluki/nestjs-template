@@ -22,6 +22,7 @@ export const configProvider = {
             TYPEORM_DATABASE: Joi.string().required(),
             TYPEORM_ENTITIES: Joi.string().required(),
             JWT_SECRET: Joi.string().required(),
+            JWT_ISSUER: Joi.string().required(),
             PASSENGERS_ALLOWED: Joi.string().valid('yes', 'no').required()
         });
 
