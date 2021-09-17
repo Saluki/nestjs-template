@@ -23,7 +23,7 @@ export function extractTokenPayload(request: Request): any | null {
         const env = process.env;
         return jwt.verify(chunks[1], `${env.JWT_SECRET}`, {
             algorithms: ['HS256'],
-            issuer: 'DEFAULT_ISSUER'
+            issuer: env.JWT_ISSUER
         });
 
     }

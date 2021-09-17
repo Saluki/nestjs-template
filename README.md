@@ -48,7 +48,7 @@ For a standard development configuration, you can leave the default values for `
 
 Next comes to the TypeORM configuration: change everything according to your own database setup. It may be also useful to turn `TYPEORM_SYNCHRONIZE` to `true` in order to avoid migrations during the development phase. Do not modify the values in the `TypeORM internals` section, unless you change the folder structure.
 
-Last but not least, define a `JWT_SECRET` to sign the JWT tokens or leave the default value in a development environment.
+Last but not least, define a `JWT_SECRET` to sign the JWT tokens or leave the default value in a development environment. Update the `JWT_ISSUER` to the correct value as set in the JWT. 
 
 ### 1.3 Launch and discover
 
@@ -63,6 +63,14 @@ npm run dev
 ```
 
 You can now head to `http://localhost:4000/docs` and see your API Swagger docs. The example passenger API is located at the `http://localhost:4000/api/v2/passengers` endpoint.
+
+For restricted routes, for testing you can use the below JWT
+
+```
+eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJERUZBVUxUX0lTU1VFUiIsImlhdCI6MTYzMTEwNDMzNCwicm9sZSI6InJlc3RyaWN0ZWQifQ.o2HcQBBpx-EJMcUFiqmAiD_jZ5J92gRDOyhybT9FakE
+```
+
+> The sample JWT above does not have a expiry, remember to use valid JWT and enforce the required claims in production
 
 ## 2. Project structure
 
