@@ -5,7 +5,7 @@ version: '3'
 
 services:
   mariadb:
-    image: 'bitnami/mariadb:10.3'
+    image: 'bitnami/mariadb:10.6'
     ports:
       - '3306:3306'
     volumes:

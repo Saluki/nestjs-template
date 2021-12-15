@@ -1,11 +1,9 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint:recommended",
-    "tslint-config-security"
+    "tslint:recommended"
   ],
   "rules": {
-    "tsr-detect-possible-timing-attacks": false,
     "adjacent-overload-signatures": true,
     "member-access": [
       true
