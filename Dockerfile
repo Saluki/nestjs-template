@@ -20,10 +20,11 @@ ENV NODE_ENV build
 USER node
 WORKDIR /home/node
 
-COPY --chown=node:node . .
+COPY package*.json ./
+RUN npm ci
 
-RUN npm ci \
-    && npm run build \
+COPY --chown=node:node . .
+RUN npm run build \
     && npm prune --production
 
 # ---
