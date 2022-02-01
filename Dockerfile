@@ -13,30 +13,31 @@
 # https://www.bretfisher.com/node-docker-good-defaults/
 # http://goldbergyoni.com/checklist-best-practice-of-node-js-in-production/
 
-FROM node:14-alpine as builder
+FROM node:16-alpine as builder
 
 ENV NODE_ENV build
 
 USER node
 WORKDIR /home/node
 
-COPY . /home/node
+COPY package*.json ./
+RUN npm ci
 
-RUN npm ci \
-    && npm run build \
+COPY --chown=node:node . .
+RUN npm run build \
     && npm prune --production
 
 # ---
 
-FROM node:14-alpine
+FROM node:16-alpine
 
 ENV NODE_ENV production
 
 USER node
 WORKDIR /home/node
 
-COPY --from=builder /home/node/package*.json /home/node/
-COPY --from=builder /home/node/node_modules/ /home/node/node_modules/
-COPY --from=builder /home/node/dist/ /home/node/dist/
+COPY --from=builder --chown=node:node /home/node/package*.json ./
+COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
+COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
 
 CMD ["node", "dist/server.js"]
