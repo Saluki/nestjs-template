@@ -1,5 +1,9 @@
 import { INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import {
+    FastifyAdapter,
+    NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { json } from 'express';
 import * as helmet from 'helmet';
@@ -56,7 +60,7 @@ function createSwagger(app: INestApplication) {
  */
 async function bootstrap(): Promise<void> {
 
-    const app = await NestFactory.create(ApplicationModule);
+    const app = await NestFactory.create<NestFastifyApplication>(ApplicationModule, new FastifyAdapter());
 
     app.setGlobalPrefix(process.env.API_PREFIX || API_DEFAULT_PREFIX);
 
