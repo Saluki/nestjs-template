@@ -15,9 +15,9 @@
     "build": "npm run clean && tsc",
     "test": "env-cmd -f .env jest --config=jest.json",
     "lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'",
-    "migration:create": "env-cmd -f .env ts-node ./node_modules/.bin/typeorm migration:create -n",
-    "migration:run": "env-cmd -f .env ts-node ./node_modules/.bin/typeorm migration:run",
-    "migration:revert": "env-cmd -f .env ts-node ./node_modules/.bin/typeorm migration:revert"
+    "migration:create": "env-cmd -f .env ts-node ./node_modules/typeorm/cli.js migration:create -n",
+    "migration:run": "env-cmd -f .env ts-node ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "env-cmd -f .env ts-node ./node_modules/typeorm/cli.js migration:revert"
   },
   "dependencies": {
     "joi": "^17.5.0",
