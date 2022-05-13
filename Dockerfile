@@ -2,7 +2,7 @@
 # PRODUCTION DOCKERFILE
 # ---------------------
 # This Dockerfile allows to build a Docker image of the NestJS application
-# and based on a NodeJS 14 image. The multi-stage mechanism allows to build
+# and based on a NodeJS 16 image. The multi-stage mechanism allows to build
 # the application in a "builder" stage and then create a lightweight production
 # image containing the required dependencies and the JS build files.
 # 
