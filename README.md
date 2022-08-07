@@ -132,11 +132,17 @@ npm run migration:run
 npm run migration:revert
 ```
 
-## 4. Project goals
+## 5. Healtcheck support
+
+A health check API is a special REST endpoint that can be used to validate the status of the service along with its dependencies. The special health check API endpoint internally triggers an overall health check of the service. This can include checking of database connections, system properties, disk availability and resource availability.
+
+The example health check API is located at the `http://localhost:4000/api/v2/health` endpoint.
+
+## 5. Project goals
 
 The goal of this project is to provide a clean and up-to-date "starter pack" for REST API projects that are built with NestJS.
 
-## 5. Roadmap
+## 6. Roadmap
 
 The following improvements are currently in progress : 
 
@@ -144,10 +150,10 @@ The following improvements are currently in progress :
 - [ ] Dockerfile improvements and better usage of environment variables
 - [x] Project structure documentation
 - [x] TypeORM migration support
-- [ ] Healtcheck support
+- [x] Healtcheck support
 - [ ] Better logging configuration with environment variables
 - [ ] Working further on examples for production instructions
 
-## 6. Contributing
+## 7. Contributing
 
 Feel free to suggest an improvement, report a bug, or ask something: [https://github.com/saluki/nestjs-template/issues](https://github.com/saluki/nestjs-template/issues)
