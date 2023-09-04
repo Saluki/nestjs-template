@@ -22,7 +22,7 @@
   "dependencies": {
     "joi": "^17.5.0",
     "@nestjs/common": "^8.2.3",
-    "@nestjs/core": "^8.2.3",
+    "@nestjs/core": "^9.0.5",
     "@nestjs/platform-express": "^8.2.3",
     "@nestjs/swagger": "^7.1.6",
     "@nestjs/testing": "^8.2.3",
