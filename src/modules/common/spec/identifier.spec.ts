@@ -1,4 +1,3 @@
-
 import { IdentifierPipe } from '../flow';
 
 describe('Identifier pipe', () => {
@@ -14,21 +13,21 @@ describe('Identifier pipe', () => {
 
     it('Should validate number identifier', () => {
 
-        const result = pipe.transform(data.VALID_IDENTIFIER, { type: 'param' });
+        const result = pipe.transform(data.VALID_IDENTIFIER);
         expect(result).toEqual(data.VALID_IDENTIFIER);
 
     });
 
     it('Should validate string identifier', () => {
 
-        const result = pipe.transform(`${data.VALID_IDENTIFIER}`, { type: 'body' });
+        const result = pipe.transform(`${data.VALID_IDENTIFIER}`);
         expect(result).toEqual(`${data.VALID_IDENTIFIER}`);
 
     });
 
     it('Should validate lowest identifier', () => {
 
-        const result = pipe.transform(`${data.LOWEST_IDENTIFIER}`, { type: 'query' });
+        const result = pipe.transform(`${data.LOWEST_IDENTIFIER}`);
         expect(result).toEqual(`${data.LOWEST_IDENTIFIER}`);
 
     });
@@ -36,7 +35,7 @@ describe('Identifier pipe', () => {
     it('Should properly reject values larger than 64 bytes', () => {
 
         expect(() => {
-            pipe.transform(data.OVERFLOW_IDENTIFIER, { type: 'param' });
+            pipe.transform(data.OVERFLOW_IDENTIFIER);
         }).toThrow('validation failed');
 
     });
@@ -44,7 +43,7 @@ describe('Identifier pipe', () => {
     it('Should properly reject values containing other characters', () => {
 
         expect(() => {
-            pipe.transform(`pre${data.VALID_IDENTIFIER}post`, { type: 'param' });
+            pipe.transform(`pre${data.VALID_IDENTIFIER}post`);
         }).toThrow('validation failed');
 
     });
@@ -52,7 +51,7 @@ describe('Identifier pipe', () => {
     it('Should properly reject null values', () => {
 
         expect(() => {
-            pipe.transform(null, { type: 'param' });
+            pipe.transform(null);
         }).toThrow('validation failed');
 
     });
@@ -60,7 +59,7 @@ describe('Identifier pipe', () => {
     it('Should properly reject undefined values', () => {
 
         expect(() => {
-            pipe.transform(undefined, { type: 'query' });
+            pipe.transform(undefined);
         }).toThrow('validation failed');
 
     });
@@ -68,7 +67,7 @@ describe('Identifier pipe', () => {
     it('Should properly reject object values', () => {
 
         expect(() => {
-            pipe.transform({ hello: 'world' }, { type: 'param' });
+            pipe.transform({ hello: 'world' });
         }).toThrow('validation failed');
 
     });

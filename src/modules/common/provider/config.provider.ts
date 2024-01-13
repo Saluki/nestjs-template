@@ -22,7 +22,7 @@ export const configProvider = {
         const result = validationSchema.validate(env);
 
         if (result.error) {
-            throw new Error('Configuration not valid: ' + result.error.message);
+            throw new Error(`Configuration not valid: ${result.error.message}`);
         }
 
         return {

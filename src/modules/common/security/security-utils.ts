@@ -1,30 +1,33 @@
 import { Request } from 'express';
 import * as jwt from 'jsonwebtoken';
 
-const PAYLOAD_COMPONENTS = 2;
+import { Role } from '../../tokens';
 
-// tslint:disable-next-line:no-any
-export function extractTokenPayload(request: Request): any | null {
+export function extractTokenPayload(request: Request): { role: Role } | null {
 
     const header = request.header('Authorization');
-
-    if (!header) {
+    if (!header || !header.startsWith('Bearer ')) {
         return null;
     }
 
-    const chunks = header.split(' ');
-
-    if (chunks.length !== PAYLOAD_COMPONENTS || chunks[0] !== 'Bearer') {
+    const [, tokenChunk] = header.split(' ');
+    if (!tokenChunk) {
         return null;
     }
 
     try {
 
         const env = process.env;
-        return jwt.verify(chunks[1], `${env.JWT_SECRET}`, {
+        const payload = jwt.verify(tokenChunk, `${env.JWT_SECRET}`, {
             algorithms: ['HS256'],
             issuer: env.JWT_ISSUER
         });
+
+        if (typeof payload === 'string' || !(payload.role in Role)) {
+            return null;
+        }
+
+        return payload as { role: Role };
 
     }
     catch (err) {

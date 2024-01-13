@@ -35,12 +35,9 @@ const SWAGGER_PREFIX = '/docs';
  */
 function createSwagger(app: INestApplication) {
 
-    const version = require('../package.json').version || '';
-
     const options = new DocumentBuilder()
         .setTitle(SWAGGER_TITLE)
         .setDescription(SWAGGER_DESCRIPTION)
-        .setVersion(version)
         .addBearerAuth()
         .build();
 
@@ -82,7 +79,10 @@ async function bootstrap(): Promise<void> {
  *       service for better error handling in production environments.
  */
 bootstrap().catch(err => {
-    // tslint:disable-next-line:no-console
+
+    // eslint-disable-next-line no-console
     console.error(err);
-    process.exit(1);
+
+    const defaultExitCode = 1;
+    process.exit(defaultExitCode);
 });

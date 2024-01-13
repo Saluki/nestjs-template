@@ -35,7 +35,7 @@ export class PassengerController {
     public async create(@Body(PassengerPipe) input: PassengerInput): Promise<PassengerData> {
 
         if (this.config.PASSENGERS_ALLOWED === 'no') {
-            throw new PreconditionFailedException(`Not allowed to onboard passengers`);
+            throw new PreconditionFailedException('Not allowed to onboard passengers');
         }
 
         const passenger = await this.passengerService.create(input);

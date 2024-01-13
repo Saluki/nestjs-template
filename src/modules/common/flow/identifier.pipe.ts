@@ -1,10 +1,10 @@
-import { ArgumentMetadata, HttpException, HttpStatus, Injectable, PipeTransform } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, PipeTransform } from '@nestjs/common';
 import * as _ from 'lodash';
 
 @Injectable()
 export class IdentifierPipe implements PipeTransform<unknown, string> {
 
-    public transform(value: unknown, metadata: ArgumentMetadata): string {
+    public transform(value: unknown): string {
 
         if (!_.isString(value)) {
             throw new HttpException('Identifier validation failed', HttpStatus.BAD_REQUEST);

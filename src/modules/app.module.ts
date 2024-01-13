@@ -7,7 +7,7 @@ import { PassengerModule } from './passenger/passenger.module';
 function assertEnv(name: string): string {
 
     const env = process.env[name];
-    if (typeof env !== 'string' || env.length === 0) {
+    if (typeof env !== 'string' || !env) {
         throw new Error(`Expected environment variable ${name}`);
     }
 

@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable import/no-extraneous-dependencies */
+
 import { HttpStatus, INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
 import * as jwt from 'jsonwebtoken';
+import * as request from 'supertest';
 
+import { App } from 'supertest/types';
 import { ApplicationModule } from '../../app.module';
 
 /**
@@ -31,9 +35,9 @@ describe('Passenger API', () => {
         app.close()
     );
 
-    it('Should return empty passenger list', () =>
+    it('Should return empty passenger list', async () =>
 
-        request(app.getHttpServer())
+        request(app.getHttpServer() as App)
             .get('/passengers')
             .expect(HttpStatus.OK)
             .then(response => {
@@ -42,14 +46,14 @@ describe('Passenger API', () => {
             })
     );
 
-    it('Should insert new passenger in the API', () => {
+    it('Should insert new passenger in the API', async () => {
 
         const token = jwt.sign({ role: 'restricted' }, `${process.env.JWT_SECRET}`, {
             algorithm: 'HS256',
             issuer: 'DEFAULT_ISSUER'
         });
 
-        return request(app.getHttpServer())
+        return request(app.getHttpServer() as App)
             .post('/passengers')
             .set('Authorization', `Bearer ${token}`)
             .send({
@@ -60,7 +64,7 @@ describe('Passenger API', () => {
             .then(response => {
                 expect(response.body.firstName).toEqual('John');
                 expect(response.body.lastName).toEqual('Doe');
-            })
+            });
     });
 
 });

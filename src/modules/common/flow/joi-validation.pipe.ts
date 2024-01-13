@@ -11,7 +11,7 @@ export abstract class JoiValidationPipe implements PipeTransform<unknown> {
         if (result.error) {
             throw new HttpException({
                 message: 'Validation failed',
-                detail: result.error.message.replace(/"/g, `'`),
+                detail: result.error.message.replace(/"/g, '\''),
                 statusCode: HttpStatus.BAD_REQUEST
             }, HttpStatus.BAD_REQUEST);
         }

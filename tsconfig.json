@@ -20,6 +20,6 @@
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
-    "src/migrations"
+    "./migrations"
   ]
 }

@@ -16,5 +16,5 @@ coverage
 .editorconfig
 Dockerfile
 README.md
-tslint.json
+.eslintrc.js
 nodemon.json
