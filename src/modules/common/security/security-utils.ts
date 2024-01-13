@@ -23,7 +23,7 @@ export function extractTokenPayload(request: FastifyRequest): { role: Role } | n
             issuer: env.JWT_ISSUER
         });
 
-        if (typeof payload === 'string' || !(payload.role in Role)) {
+        if (typeof payload === 'string') {
             return null;
         }
 

@@ -18,5 +18,7 @@
     "json",
     "lcov"
   ],
-  "testURL": "http://localhost"
+  "testEnvironmentOptions": {
+    "url": "http://localhost"
+  }
 }

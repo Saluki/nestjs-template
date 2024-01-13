@@ -10,6 +10,7 @@ Scaffold quickly your next [NestJS 10](https://nestjs.com/) API project with
 - REST API with [Prisma](https://www.prisma.io/) support 
 - Swagger documentation, [Joi](https://github.com/hapijs/joi) validation, Winston logger, ...
 - Folder structure, code samples and best practices
+- Fast HTTP server with [Fastify](https://fastify.dev/)
 
 ## 1. Getting started
 
@@ -18,13 +19,13 @@ Scaffold quickly your next [NestJS 10](https://nestjs.com/) API project with
 Before starting, make sure you have at least those components on your workstation:
 
 - An up-to-date release of [NodeJS](https://nodejs.org/) such as 20.x and NPM
-- A database such as PostgreSQL. You may use the provided `docker-compose` file.
+- A database such as PostgreSQL. You may use the provided `docker-compose.yml` file.
 
 [Docker](https://www.docker.com/) may also be useful for advanced testing and image building, although it is not required for development.
 
 ### 1.2 Project configuration
 
-Start by cloning this project on your workstation.
+Start by cloning this project on your workstation or click on ["Use this template"](https://github.com/new?template_name=nestjs-template&template_owner=Saluki) in Github.
 
 ``` sh
 git clone https://github.com/saluki/nestjs-template my-project
@@ -37,7 +38,7 @@ cd ./my-project
 npm install
 ```
 
-Once the dependencies are installed, you can now configure your project by creating a new `.env` file containing your environment variables used for development.
+Once the dependencies are installed, you can now configure your project by creating a new `.env` file containing the environment variables used for development.
 
 ```
 cp .env.example .env
@@ -55,11 +56,14 @@ Last but not least, define a `JWT_SECRET` to sign the JWT tokens or leave the de
 You are now ready to launch the NestJS application using the command below.
 
 ```sh
+# For use in development environments only, performs a Prisma migration
+npx prisma migrate dev
+
 # Launch the development server with TSNode
 npm run dev
 ```
 
-You can now head to `http://localhost:4000/docs` and see your API Swagger docs. The example passenger API is located at the `http://localhost:4000/api/v2/passengers` endpoint.
+You can now head to `http://localhost:3000/docs` and see your API Swagger docs. The example passenger API is located at the `http://localhost:3000/api/v1/passengers` endpoint.
 
 For restricted routes, for testing you can use the below JWT
 
@@ -67,7 +71,7 @@ For restricted routes, for testing you can use the below JWT
 eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJERUZBVUxUX0lTU1VFUiIsImlhdCI6MTYzMTEwNDMzNCwicm9sZSI6InJlc3RyaWN0ZWQifQ.o2HcQBBpx-EJMcUFiqmAiD_jZ5J92gRDOyhybT9FakE
 ```
 
-> The sample JWT above does not have a expiry, remember to use valid JWT and enforce the required claims in production
+> The sample JWT above does not have an expiry, remember to use a valid JWT and enforce the required claims in production
 
 ## 2. Project structure
 
@@ -107,9 +111,6 @@ npm run dev
 
 # Transpile the TypeScript files
 npm run build
-
-# Internal command used during the Docker build stage
-npm run build:docker
 
 # Run the project' functional tests
 npm run test

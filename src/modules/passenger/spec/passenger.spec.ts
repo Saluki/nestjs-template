@@ -50,7 +50,7 @@ describe('Passenger API', () => {
 
         const token = jwt.sign({ role: 'restricted' }, `${process.env.JWT_SECRET}`, {
             algorithm: 'HS256',
-            issuer: 'DEFAULT_ISSUER'
+            issuer: `${process.env.JWT_ISSUER}`
         });
 
         return request(app.getHttpServer() as App)
