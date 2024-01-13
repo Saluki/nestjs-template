@@ -4,18 +4,18 @@
 version: '3'
 
 services:
-  mariadb:
-    image: 'bitnami/mariadb:11.2'
+  postgresql:
+    image: docker.io/bitnami/postgresql:16
     ports:
-      - '3306:3306'
+      - '5432:5432'
     volumes:
-      - 'mariadb_data:/bitnami/mariadb'
+      - 'postgresql_data:/bitnami/postgresql'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
-      - MARIADB_DATABASE=nestjs
-      - MARIADB_USER=nestjs
-      - MARIADB_PASSWORD=password
+      - POSTGRESQL_DATABASE=nestjs
+      - POSTGRESQL_USERNAME=nestjs
+      - POSTGRESQL_PASSWORD=password
 
 volumes:
-  mariadb_data:
+  postgresql_data:
     driver: local

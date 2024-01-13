@@ -24,9 +24,7 @@ export class PassengerController {
     @ApiResponse({ status: HttpStatus.OK, isArray: true, type: PassengerData })
     public async find(): Promise<PassengerData[]> {
 
-        const passengers = await this.passengerService.find();
-
-        return passengers.map(passenger => passenger.buildData());
+        return this.passengerService.find();
     }
 
     @Post()
@@ -41,7 +39,7 @@ export class PassengerController {
         const passenger = await this.passengerService.create(input);
         this.logger.info(`Created new passenger with ID ${passenger.id}`);
 
-        return passenger.buildData();
+        return passenger;
     }
 
 }

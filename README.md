@@ -7,7 +7,7 @@ Scaffold quickly your next [NestJS 10](https://nestjs.com/) API project with
 ❤️ using this template
 
 - Crafted for Docker environments (Dockerfile support and environment variables)
-- REST API with [TypeORM](http://typeorm.io) support 
+- REST API with [Prisma](https://www.prisma.io/) support 
 - Swagger documentation, [Joi](https://github.com/hapijs/joi) validation, Winston logger, ...
 - Folder structure, code samples and best practices
 
@@ -18,7 +18,7 @@ Scaffold quickly your next [NestJS 10](https://nestjs.com/) API project with
 Before starting, make sure you have at least those components on your workstation:
 
 - An up-to-date release of [NodeJS](https://nodejs.org/) such as 20.x and NPM
-- A database such as MariaDB, MySQL or PostgreSQL. You may use the provided `docker-compose` file.
+- A database such as PostgreSQL. You may use the provided `docker-compose` file.
 
 [Docker](https://www.docker.com/) may also be useful for advanced testing and image building, although it is not required for development.
 
@@ -46,7 +46,7 @@ vi .env
 
 For a standard development configuration, you can leave the default values for `API_PORT`, `API_PREFIX` and `API_CORS` under the `Api configuration` section. The `SWAGGER_ENABLE` rule allows you to control the Swagger documentation module for NestJS. Leave it to `1` when starting this example.
 
-Next comes to the TypeORM configuration: change everything according to your own database setup. It may be also useful to turn `TYPEORM_SYNCHRONIZE` to `true` in order to avoid migrations during the development phase. Do not modify the values in the `TypeORM internals` section, unless you change the folder structure.
+Next comes to the Prisma configuration: change the DATABASE_URL according to your own database setup.
 
 Last but not least, define a `JWT_SECRET` to sign the JWT tokens or leave the default value in a development environment. Update the `JWT_ISSUER` to the correct value as set in the JWT. 
 
@@ -55,9 +55,6 @@ Last but not least, define a `JWT_SECRET` to sign the JWT tokens or leave the de
 You are now ready to launch the NestJS application using the command below.
 
 ```sh
-# Perform migrations in your database using TypeORM
-npm run migration:run
-
 # Launch the development server with TSNode
 npm run dev
 ```
@@ -78,7 +75,6 @@ This template was made with a well-defined directory structure.
 
 ```sh
 src/
-├── migrations/  # TypeORM migrations created using "npm run migration:create"
 ├── modules
 │   ├── app.module.ts
 │   ├── common/  # The common module contains pipes, guards, service and provider used in the whole application
@@ -89,7 +85,6 @@ src/
 │   │   │   └── passenger.pipe.ts
 │   │   ├── model/
 │   │   │   ├── passenger.data.ts  # The model that will be returned in the response
-│   │   │   ├── passenger.entity.ts  # The actual TypeORM entity
 │   │   │   └── passenger.input.ts  # The model that is used in the request
 │   │   ├── passenger.module.ts
 │   │   ├── service/
@@ -121,33 +116,12 @@ npm run test
 
 # Lint the project files using TSLint
 npm run lint
-
-# Create a new migration named MyMigration
-npm run migration:create [MyMigration]
-
-# Run the TypeORM migrations
-npm run migration:run
-
-# Revert the TypeORM migrations
-npm run migration:revert
 ```
 
 ## 4. Project goals
 
 The goal of this project is to provide a clean and up-to-date "starter pack" for REST API projects that are built with NestJS.
 
-## 5. Roadmap
-
-The following improvements are currently in progress : 
-
-- [x] Configuration validation
-- [ ] Dockerfile improvements and better usage of environment variables
-- [x] Project structure documentation
-- [x] TypeORM migration support
-- [ ] Healtcheck support
-- [ ] Better logging configuration with environment variables
-- [ ] Working further on examples for production instructions
-
-## 6. Contributing
+## 5. Contributing
 
 Feel free to suggest an improvement, report a bug, or ask something: [https://github.com/saluki/nestjs-template/issues](https://github.com/saluki/nestjs-template/issues)

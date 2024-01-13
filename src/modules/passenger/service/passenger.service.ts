@@ -1,29 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 
-import { Passenger, PassengerInput } from '../model';
+import { PrismaService } from '../../common';
+import { PassengerData, PassengerInput } from '../model';
 
 @Injectable()
 export class PassengerService {
 
     public constructor(
-        @InjectRepository(Passenger)
-        private readonly passengerRepository: Repository<Passenger>
+        private readonly prismaService: PrismaService
     ) { }
 
-    public async find(): Promise<Passenger[]> {
-        return this.passengerRepository.find();
+    public async find(): Promise<PassengerData[]> {
+
+        const passengers = await this.prismaService.passenger.findMany({});
+
+        return passengers.map(passenger => new PassengerData(passenger));
     }
 
-    public async create(input: PassengerInput): Promise<Passenger> {
+    public async create(data: PassengerInput): Promise<PassengerData> {
 
-        const passenger = new Passenger();
+        const passenger = await this.prismaService.passenger.create({
+            data
+        });
 
-        passenger.firstName = input.firstName;
-        passenger.lastName = input.lastName;
-
-        return this.passengerRepository.save(passenger);
+        return new PassengerData(passenger);
     }
 
 }
