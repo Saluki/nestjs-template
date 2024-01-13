@@ -1,5 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { Request } from 'express';
+import { FastifyRequest } from 'fastify';
 
 import { Role } from '../../tokens';
 import { extractTokenPayload } from './security-utils';
@@ -9,7 +9,7 @@ export class RestrictedGuard implements CanActivate {
 
     public canActivate(context: ExecutionContext): boolean {
 
-        const payload = extractTokenPayload(context.switchToHttp().getRequest<Request>());
+        const payload = extractTokenPayload(context.switchToHttp().getRequest<FastifyRequest>());
         if (!payload) {
             return false;
         }

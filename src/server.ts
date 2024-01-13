@@ -1,8 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { json } from 'express';
-import helmet from 'helmet';
 
 import { ApplicationModule } from './modules/app.module';
 import { CommonModule, LogInterceptor } from './modules/common';
@@ -53,16 +52,18 @@ function createSwagger(app: INestApplication) {
  */
 async function bootstrap(): Promise<void> {
 
-    const app = await NestFactory.create(ApplicationModule);
+    const app = await NestFactory.create<NestFastifyApplication>(
+        ApplicationModule,
+        new FastifyAdapter()
+    );
+
+    // @todo Enable Helmet for better API security headers
 
     app.setGlobalPrefix(process.env.API_PREFIX || API_DEFAULT_PREFIX);
 
     if (!process.env.SWAGGER_ENABLE || process.env.SWAGGER_ENABLE === '1') {
         createSwagger(app);
     }
-
-    app.use(json());
-    app.use(helmet);
 
     const logInterceptor = app.select(CommonModule).get(LogInterceptor);
     app.useGlobalInterceptors(logInterceptor);

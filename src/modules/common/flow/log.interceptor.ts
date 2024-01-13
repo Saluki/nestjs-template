@@ -1,5 +1,5 @@
 import { CallHandler, ExecutionContext, HttpStatus, Injectable, NestInterceptor } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { FastifyRequest, FastifyReply } from 'fastify';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -12,13 +12,13 @@ export class LogInterceptor implements NestInterceptor {
         private readonly logger: LoggerService
     ) { }
 
-    public intercept(context: ExecutionContext, next: CallHandler): Observable<Response> {
+    public intercept(context: ExecutionContext, next: CallHandler): Observable<FastifyReply> {
 
         const startTime = new Date().getTime();
-        const request = context.switchToHttp().getRequest<Request>();
+        const request = context.switchToHttp().getRequest<FastifyRequest>();
 
         return next.handle().pipe(
-            map((data: Response) => {
+            map((data: FastifyReply) => {
                 const responseStatus = (request.method === 'POST') ? HttpStatus.CREATED : HttpStatus.OK;
                 this.logger.info(`${this.getTimeDelta(startTime)}ms ${request.ip} ${responseStatus} ${request.method} ${this.getUrl(request)}`);
                 return data;
@@ -37,8 +37,8 @@ export class LogInterceptor implements NestInterceptor {
         return new Date().getTime() - startTime;
     }
 
-    private getUrl(request: Request): string {
-        return `${request.protocol}://${request.get('host')}${request.originalUrl}`;
+    private getUrl(request: FastifyRequest): string {
+        return `${request.protocol}://${request.hostname}${request.originalUrl}`;
     }
 
     private hasStatus(err: unknown): err is { status: number } {
