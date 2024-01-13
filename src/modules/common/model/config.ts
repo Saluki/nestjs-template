@@ -10,6 +10,8 @@ export interface Config {
 
     readonly JWT_ISSUER: string;
 
+    readonly HEALTH_TOKEN: string;
+
     readonly PASSENGERS_ALLOWED: string;
 
 }
