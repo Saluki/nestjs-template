@@ -1,5 +1,5 @@
 import { Body, Controller, Get, HttpStatus, Inject, Post, PreconditionFailedException, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { Config, LoggerService, RestrictedGuard } from '../../common';
 import { Service } from '../../tokens';
@@ -21,6 +21,7 @@ export class PassengerController {
     ) { }
 
     @Get()
+    @ApiOperation({ summary: 'Find passengers' })
     @ApiResponse({ status: HttpStatus.OK, isArray: true, type: PassengerData })
     public async find(): Promise<PassengerData[]> {
 
@@ -29,6 +30,7 @@ export class PassengerController {
 
     @Post()
     @UseGuards(RestrictedGuard)
+    @ApiOperation({ summary: 'Create passenger' })
     @ApiResponse({ status: HttpStatus.CREATED, type: PassengerData })
     public async create(@Body(PassengerPipe) input: PassengerInput): Promise<PassengerData> {
 

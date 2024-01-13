@@ -1,11 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { PickType } from '@nestjs/swagger';
+import { PassengerData } from './passenger.data';
 
-export class PassengerInput {
-
-    @ApiProperty()
-    public readonly firstName: string;
-
-    @ApiProperty()
-    public readonly lastName: string;
-
-}
+export class PassengerInput extends PickType(PassengerData, ['firstName', 'lastName'] as const) {}

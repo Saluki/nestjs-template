@@ -6,6 +6,5 @@
   ],
   "exclude": [
     "node_modules",
-    "./migrations"
   ]
 }

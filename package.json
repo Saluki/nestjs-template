@@ -14,7 +14,6 @@
     "dev": "env-cmd -f .env nodemon",
     "build": "npm run clean && tsc",
     "test": "env-cmd -f .env jest --config=jest.json",
-    "test:reset": "env-cmd -f .env prisma db execute --file=./prisma/reset.sql --schema ./prisma/schema.prisma",
     "lint": "eslint -c .eslintrc.js --ext .ts 'src/**/*.ts'"
   },
   "dependencies": {

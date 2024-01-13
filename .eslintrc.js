@@ -135,10 +135,6 @@ module.exports = {
             "off",
             "off"
         ],
-        "capitalized-comments": [
-            "error",
-            "always"
-        ],
         "comma-dangle": "off",
         "complexity": "off",
         "constructor-super": "error",

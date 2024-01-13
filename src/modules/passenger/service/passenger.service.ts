@@ -10,6 +10,11 @@ export class PassengerService {
         private readonly prismaService: PrismaService
     ) { }
 
+    /**
+     * Find all passengers in the database
+     *
+     * @returns A passenger list
+     */
     public async find(): Promise<PassengerData[]> {
 
         const passengers = await this.prismaService.passenger.findMany({});
@@ -17,6 +22,12 @@ export class PassengerService {
         return passengers.map(passenger => new PassengerData(passenger));
     }
 
+    /**
+     * Create a new passenger record
+     *
+     * @param data Passenger details
+     * @returns A passenger created in the database
+     */
     public async create(data: PassengerInput): Promise<PassengerData> {
 
         const passenger = await this.prismaService.passenger.create({
