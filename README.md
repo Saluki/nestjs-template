@@ -119,10 +119,20 @@ npm run test
 npm run lint
 ```
 
-## 4. Project goals
+## 5. Healtcheck support
+
+A healthcheck API is a REST endpoint that can be used to validate the status of the service along with its dependencies. The healthcheck API endpoint internally triggers an overall health check of the service. This can include database connection checks, system properties, disk availability and memory availability.
+
+The example healthcheck endpoint can be request with the token located in the `HEALTH_TOKEN` environment variable.
+
+```sh
+curl -H 'Authorization: Bearer ThisMustBeChanged' http://localhost:3000/api/v1/health
+```
+
+## 6. Project goals
 
 The goal of this project is to provide a clean and up-to-date "starter pack" for REST API projects that are built with NestJS.
 
-## 5. Contributing
+## 7. Contributing
 
 Feel free to suggest an improvement, report a bug, or ask something: [https://github.com/saluki/nestjs-template/issues](https://github.com/saluki/nestjs-template/issues)
