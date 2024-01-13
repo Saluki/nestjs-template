@@ -1,9 +1,9 @@
 
-# NestJS 8 API project template
+# NestJS 10 API project template
 
 [![License](https://img.shields.io/github/license/saluki/nestjs-template.svg)](https://github.com/saluki/nestjs-template/blob/master/LICENSE)
 
-Scaffold quickly your next [NestJS 8](https://nestjs.com/) API project with 
+Scaffold quickly your next [NestJS 10](https://nestjs.com/) API project with 
 ❤️ using this template
 
 - Crafted for Docker environments (Dockerfile support and environment variables)
@@ -17,7 +17,7 @@ Scaffold quickly your next [NestJS 8](https://nestjs.com/) API project with
 
 Before starting, make sure you have at least those components on your workstation:
 
-- An up-to-date release of [NodeJS](https://nodejs.org/) and NPM
+- An up-to-date release of [NodeJS](https://nodejs.org/) such as 20.x and NPM
 - A database such as MariaDB, MySQL or PostgreSQL. You may use the provided `docker-compose` file.
 
 [Docker](https://www.docker.com/) may also be useful for advanced testing and image building, although it is not required for development.

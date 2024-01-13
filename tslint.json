@@ -62,7 +62,6 @@
     "no-floating-promises": true,
     "no-invalid-this": true,
     "no-return-await": true,
-    "no-shadowed-variable": true,
     "no-string-throw": true,
     "no-unsafe-finally": true,
     "restrict-plus-operands": true,

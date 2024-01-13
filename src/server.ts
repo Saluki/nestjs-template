@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { json } from 'express';
-import * as helmet from 'helmet';
+import helmet from 'helmet';
 
 import { ApplicationModule } from './modules/app.module';
 import { CommonModule, LogInterceptor } from './modules/common';
@@ -65,7 +65,7 @@ async function bootstrap(): Promise<void> {
     }
 
     app.use(json());
-    app.use(helmet());
+    app.use(helmet);
 
     const logInterceptor = app.select(CommonModule).get(LogInterceptor);
     app.useGlobalInterceptors(logInterceptor);
