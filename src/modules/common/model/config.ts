@@ -8,6 +8,8 @@ export interface Config {
 
     readonly JWT_SECRET: string;
 
+    readonly JWT_ISSUER: string;
+
     readonly PASSENGERS_ALLOWED: string;
 
 }
